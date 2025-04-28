@@ -4,7 +4,7 @@ LD_GLAGS = -Tld/ch32v307.ld
 OPT = -march=rv32imac -mabi=ilp32
 OUT = firmware.bin
 ISP = /home/user/develpoment/tools/wchisp/target/release/wchisp
-SOURCES = main.c
+SOURCES = main.c ch32v307.c
 
 build:
 	${C} ${OPT} ${CFLAGS} ${LD_GLAGS} ${SOURCES} -o ${OUT}

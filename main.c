@@ -6,21 +6,17 @@
 *
 *
 */
-#define RCC_APB2ENR   (*(volatile unsigned long *)0x40021018)
-#define GPIOA_CRH     (*(volatile unsigned long *)0x40010804)
-#define GPIOA_CRL     (*(volatile unsigned long *)0x40010800)
-#define GPIOA_ODR     (*(volatile unsigned long *)0x4001080C)
-#define AFIO_PCFR1    (*(volatile unsigned long *)0x40010004)
+#include "ch32v307.h"
+
 
 void delay(volatile unsigned int t) {
     while (t--) asm volatile ("nop");
 }
 
 void main(void) {
-    // Enable GPIOA + AFIO
-    RCC_APB2ENR |= (1 << 2);  // GPIOAEN
-    RCC_APB2ENR |= (1 << 0);  // AFIOEN
 
+    enable_afioen();
+    enable_gpioa();
     // Disable JTAG/SWD so PA15 can be used
     AFIO_PCFR1 |= (0b100 << 24); // Full disable: SWJ_CFG = 0b100
 
@@ -33,7 +29,7 @@ void main(void) {
     GPIOA_CRL |=  (0x2 << 20);
 
     while (1) {
-        GPIOA_ODR ^= (1 << 15); // toggle PA15
+        led1_toggle();
         GPIOA_ODR ^= (1 << 5);
         delay(200000);
     }
