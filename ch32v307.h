@@ -1,3 +1,4 @@
+#include <inttypes.h>
 
 #define PHY_ADDRESS   0x01 
 #define DVP           0x50050000
@@ -26,6 +27,11 @@
 #define PC            0x40011000
 #define PB            0x40010C00
 #define PA            0x40010800
+#define GPIOE         PE
+#define GPIOD         PD
+#define GPIOC         PC
+#define GPIOB         PB
+#define GPIOA         PA
 
 #define EXTI          0x40010400
 #define AFIO          0x40010000
@@ -95,3 +101,23 @@ typedef struct {
 
 
 #define ETH            ((EMAC_TypeDef *) ETH_BASE)
+
+#define RCC_CTL         (*((volatile uint32_t *)(RCC + 0x00))) // Control register
+#define RCC_CFG0        (*((volatile uint32_t *)(RCC + 0x04))) // Clock config
+#define RCC_APB2EN      (*((volatile uint32_t *)(RCC + 0x18))) // APB2 enable
+                                                               //
+// Ports
+#define GPIOA_CRL       (*((volatile uint32_t *)(PA + 0x00))) // Control low (PA0–PA7)
+#define GPIOA_CRH       (*((volatile uint32_t *)(PA + 0x04))) // Control high (PA8–PA15)
+#define GPIOA_IDR       (*((volatile uint32_t *)(PA + 0x08))) // Input data
+#define GPIOA_ODR       (*((volatile uint32_t *)(PA + 0x0C))) // Output data
+
+#define GPIOB_CRL       (*((volatile uint32_t *)(PB + 0x00))) // Control low (PB0–PB7)
+#define GPIOB_CRH       (*((volatile uint32_t *)(PB + 0x04))) // Control high (PB8–PB15)
+#define GPIOB_IDR       (*((volatile uint32_t *)(PB + 0x08))) // Input data
+#define GPIOB_ODR       (*((volatile uint32_t *)(PB + 0x0C))) // Output data
+
+#define GPIOC_CRL       (*((volatile uint32_t *)(PC + 0x00))) // Control low (PC0–PC7)
+#define GPIOC_CRH       (*((volatile uint32_t *)(PC + 0x04))) // Control high (PC8–PC15)
+#define GPIOC_IDR       (*((volatile uint32_t *)(PC + 0x08))) // Input data
+#define GPIOC_ODR       (*((volatile uint32_t *)(PC + 0x0C))) // Output data
