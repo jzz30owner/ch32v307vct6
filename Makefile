@@ -1,9 +1,9 @@
-C = /home/user/develpoment/libs/riscv_path/bin/riscv64-unknown-elf-gcc
+C = /home/user/utils/riscv/bin/riscv64-unknown-linux-gnu-gcc
 CFLAGS = -Os -nostdlib 
 LD_GLAGS = -Tld/ch32v307.ld
 OPT = -march=rv32imac -mabi=ilp32
 OUT = firmware.bin
-ISP = /home/user/develpoment/tools/wchisp/target/release/wchisp
+ISP = /home/user/utils/wchisp/wchisp
 SOURCES = main.c ch32v307.c
 
 build:
