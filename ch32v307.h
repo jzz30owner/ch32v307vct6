@@ -80,23 +80,23 @@
 #define CORE_PPHY     0xE0000000
 
 typedef struct {
-    volatile unsigned int MACCR;
-    volatile unsigned int MACFFR;
-    volatile unsigned int MACHTHR;
-    volatile unsigned int MACHTLR;
-    volatile unsigned int MACMIIAR;
-    volatile unsigned int MACMIIDR;
-    volatile unsigned int MACFCR;
-    volatile unsigned int MACVLANTR;
-    unsigned int RESERVED0[2];
-    volatile unsigned int MACRWUFFR;
-    volatile unsigned int MACPMTCSR;
-    unsigned int RESERVED1;
-    volatile unsigned int MACDBGR;
-    volatile unsigned int MACSR;
-    volatile unsigned int MACIMR;
-    volatile unsigned int MACA0HR;
-    volatile unsigned int MACA0LR;
+    volatile uint32_t MACCR;
+    volatile uint32_t MACFFR;
+    volatile uint32_t MACHTHR;
+    volatile uint32_t MACHTLR;
+    volatile uint32_t MACMIIAR;
+    volatile uint32_t MACMIIDR;
+    volatile uint32_t MACFCR;
+    volatile uint32_t MACVLANTR;
+    uint32_t RESERVED0[2];
+    volatile uint32_t MACRWUFFR;
+    volatile uint32_t MACPMTCSR;
+    uint32_t RESERVED1;
+    volatile uint32_t MACDBGR;
+    volatile uint32_t MACSR;
+    volatile uint32_t MACIMR;
+    volatile uint32_t MACA0HR;
+    volatile uint32_t MACA0LR;
 } EMAC_TypeDef;
 
 
