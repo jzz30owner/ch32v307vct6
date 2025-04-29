@@ -1,0 +1,4 @@
+CompileFlags:
+  Add:
+    - -I/home/user/projects/ch32v307vct6/ch32v307
+    - -I/usr/include
