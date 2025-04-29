@@ -159,7 +159,117 @@
  */
 #define RCC_CTL         (*((volatile uint32_t *)(RCC + 0x00))) // Control register
                                                                //
-#define RCC_CFG0        (*((volatile uint32_t *)(RCC + 0x04))) // Clock config
+ /**
+ * @brief RCC_CIR - Reset and Clock Control Clock Interrupt Register
+ *
+ * @details This 32-bit read-write register configures and monitors clock-related
+ * interrupts and status flags on the CH32V307, located at address 0x40021004
+ * (RCC base + 0x04). It enables/disables interrupts for clock readiness events
+ * (LSI, HSI, HSE, PLL) and Clock Security System (CSS) events, provides status
+ * flags for these events, and allows clearing interrupt flags. Clock sources must
+ * be enabled via RCC_CR (e.g., HSION, HSEON, PLLON) and configured in RCC_CFGR
+ * before using interrupts. RCC interrupts must be enabled in the NVIC for
+ * interrupt-driven operation. The CSS interrupt requires CSSON in RCC_CR.
+ *
+ * @note The CH32V307 supports HSI (8 MHz), HSE (4–32 MHz), PLL, and LSI (40 kHz)
+ * clock sources. Use this register to monitor clock stability or handle HSE failures
+ * via CSS. Write 1 to clear flags (e.g., PLLRDYC). Ensure NVIC is configured for RCC
+ * interrupts. Consult the CH32V307 datasheet and reference manual for interrupt
+ * configuration details.
+ *
+ * Bit fields:
+ * - Bits 31:24 : Reserved
+ *   - Description: Reserved, should be kept at 0
+ *   - Values: N/A
+ * - Bit 23     : CSSC
+ *   - Description: Clock security system interrupt clear (write-only)
+ *   - Values:
+ *     - 0: No effect
+ *     - 1: Clear CSS interrupt flag
+ * - Bit 22     : PLLRDYC
+ *   - Description: PLL ready interrupt clear (write-only)
+ *   - Values:
+ *     - 0: No effect
+ *     - 1: Clear PLLRDY interrupt flag
+ * - Bit 21     : HSERDYC
+ *   - Description: HSE ready interrupt clear (write-only)
+ *   - Values:
+ *     - 0: No effect
+ *     - 1: Clear HSERDY interrupt flag
+ * - Bit 20     : HSIRDYC
+ *   - Description: HSI ready interrupt clear (write-only)
+ *   - Values:
+ *     - 0: No effect
+ *     - 1: Clear HSIRDY interrupt flag
+ * - Bit 19     : LSIRDYC
+ *   - Description: LSI ready interrupt clear (write-only)
+ *   - Values:
+ *     - 0: No effect
+ *     - 1: Clear LSIRDY interrupt flag
+ * - Bits 18:16 : Reserved
+ *   - Description: Reserved, should be kept at 0
+ *   - Values: N/A
+ * - Bit 15     : Reserved
+ *   - Description: Reserved, should be kept at 0
+ *   - Values: N/A
+ * - Bit 14     : CSSONIE
+ *   - Description: Clock security system interrupt enable
+ *   - Values:
+ *     - 0: CSS interrupt disabled
+ *     - 1: CSS interrupt enabled
+ * - Bit 13     : PLLRDYIE
+ *   - Description: PLL ready interrupt enable
+ *   - Values:
+ *     - 0: PLLRDY interrupt disabled
+ *     - 1: PLLRDY interrupt enabled
+ * - Bit 12     : HSERDYIE
+ *   - Description: HSE ready interrupt enable
+ *   - Values:
+ *     - 0: HSERDY interrupt disabled
+ *     - 1: HSERDY interrupt enabled
+ * - Bit 11     : HSIRDYIE
+ *   - Description: HSI ready interrupt enable
+ *   - Values:
+ *     - 0: HSIRDY interrupt disabled
+ *     - 1: HSIRDY interrupt enabled
+ * - Bit 10     : LSIRDYIE
+ *   - Description: LSI ready interrupt enable
+ *   - Values:
+ *     - 0: LSIRDY interrupt disabled
+ *     - 1: LSIRDY interrupt enabled
+ * - Bits 9:8   : Reserved
+ *   - Description: Reserved, should be kept at 0
+ *   - Values: N/A
+ * - Bit 7      : CSSF
+ *   - Description: Clock security system interrupt flag (read-only)
+ *   - Values:
+ *     - 0: No CSS event
+ *     - 1: CSS event detected (HSE failure)
+ * - Bit 6      : PLLRDYF
+ *   - Description: PLL ready interrupt flag (read-only)
+ *   - Values:
+ *     - 0: No PLL ready event
+ *     - 1: PLL ready event
+ * - Bit 5      : HSERDYF
+ *   - Description: HSE ready interrupt flag (read-only)
+ *   - Values:
+ *     - 0: No HSE ready event
+ *     - 1: HSE ready event
+ * - Bit 4      : HSIRDYF
+ *   - Description: HSI ready interrupt flag (read-only)
+ *   - Values:
+ *     - 0: No HSI ready event
+ *     - 1: HSI ready event
+ * - Bit 3      : LSIRDYF
+ *   - Description: LSI ready interrupt flag (read-only)
+ *   - Values:
+ *     - 0: No LSI ready event
+ *     - 1: LSI ready event
+ * - Bits 2:0   : Reserved
+ *   - Description: Reserved, should be kept at 0
+ *   - Values: N/A
+ */
+#define RCC_CIR         (*((volatile uint32_t *)(RCC + 0x04))) 
 
 /**
  * @brief RCC_CFGR - Reset and Clock Control Configuration Register
