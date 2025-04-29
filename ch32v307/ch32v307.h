@@ -90,7 +90,8 @@
  * Bit 4: GPIOCEN, etc.
 */
 #define RCC_APB2EN      (*((volatile uint32_t *)(RCC + 0x18))) // APB2 enable
-                                                               //
+#define RCC_APB1ENR     (*((volatile uint32_t *)(RCC + 0x1C)))
+
 // Ports
 // CTL -> control register. Each pin uses 4 bits (2 for mode, 2 for configuration).
 #define GPIOA_CRL       (*((volatile uint32_t *)(PA + 0x00))) // Control low (PA0–PA7)
