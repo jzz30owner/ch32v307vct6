@@ -79,29 +79,6 @@
 #define FSMC          0xA0000000
 #define CORE_PPHY     0xE0000000
 
-typedef struct {
-    volatile uint32_t MACCR;
-    volatile uint32_t MACFFR;
-    volatile uint32_t MACHTHR;
-    volatile uint32_t MACHTLR;
-    volatile uint32_t MACMIIAR;
-    volatile uint32_t MACMIIDR;
-    volatile uint32_t MACFCR;
-    volatile uint32_t MACVLANTR;
-    uint32_t RESERVED0[2];
-    volatile uint32_t MACRWUFFR;
-    volatile uint32_t MACPMTCSR;
-    uint32_t RESERVED1;
-    volatile uint32_t MACDBGR;
-    volatile uint32_t MACSR;
-    volatile uint32_t MACIMR;
-    volatile uint32_t MACA0HR;
-    volatile uint32_t MACA0LR;
-} EMAC_TypeDef;
-
-
-#define ETH            ((EMAC_TypeDef *) ETH_BASE)
-
 #define RCC_CTL         (*((volatile uint32_t *)(RCC + 0x00))) // Control register
 #define RCC_CFG0        (*((volatile uint32_t *)(RCC + 0x04))) // Clock config
 
