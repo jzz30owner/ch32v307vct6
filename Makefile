@@ -42,7 +42,7 @@ info:
 	$(ISP) info
 
 clean:
-	rm $(BUILD_DIR)/*
+	rm -rf $(BUILD_DIR)
 
 .PHONY: all clean flash
 
