@@ -947,4 +947,8 @@ typedef struct {
 #define ETH            ((EMAC_TypeDef *) ETH_BASE)
 
 
+void enable_emac();
+
+
+
 
