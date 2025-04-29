@@ -1,10 +1,10 @@
 #include "timers.h"
+#include <stdint.h>
 
-#define TIM2_PSC     (*(volatile unsigned long *)0x40000028)
-#define TIM2_ARR     (*(volatile unsigned long *)0x4000002C)
-#define TIM2_CNT     (*(volatile unsigned long *)0x40000024)
-#define TIM2_CR1     (*(volatile unsigned long *)0x40000000)
-#define TIM2_SR      (*(volatile unsigned long *)0x40000010)
+#define TIM2_PSC      (*((volatile uint32_t *)(TIM2 + 0x28)))
+#define TIM2_ARR      (*((volatile uint32_t *)(TIM2 + 0x2C)))
+#define TIM2_CNT      (*((volatile uint32_t *)(TIM2 + 0x24)))
+#define TIM2_CR1      (*(volatile uint32_t *)TIM2)
 
 void tim2_init() {
   RCC_APB1ENR |= (1 << 0); // Enable TIM2 ticks
