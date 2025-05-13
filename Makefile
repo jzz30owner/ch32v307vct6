@@ -11,7 +11,7 @@ SRC_DIRS = . ch32v307
 
 # Flags
 CFLAGS = -Os -nostdlib -march=rv32imac -mabi=ilp32 $(addprefix -I, $(SRC_DIRS))
-LDFLAGS = -Tld/ch32v307.ld
+LDFLAGS = -Tld/ch32v307.ld -lg -lgcc
 
 # Files
 SRC = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))
