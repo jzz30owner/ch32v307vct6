@@ -402,6 +402,53 @@
  *     - 1: AFIO clock enabled
  */
 
+ /**
+ * @brief RCC_AHBENR - AHB Peripheral Clock Enable Register
+ *
+ * @details The RCC_AHBENR register enables or disables the clock for peripherals
+ * connected to the AHB bus in the CH32V307 microcontroller. Located at address
+ * 0x40021014, this 32-bit register controls clock gating for peripherals such as
+ * DMA1, DMA2, SRAM, USB, and CRC, which are essential for high-performance
+ * operations like Ethernet frame transfers (via DMA2) and data integrity checks
+ * (via CRC). Writing 1 to a bit enables the corresponding peripheral's clock,
+ * while writing 0 disables it. Ensure stable system clocks (via RCC_CR, RCC_CFGR)
+ * before accessing this register. This register is particularly relevant for
+ * Ethernet applications (e.g., enabling DMA2 for ETH frame handling) and CRC
+ * calculations, complementing RCC_APB2ENR (EMACEN) settings.
+ *
+ * @note Bits not listed are reserved and should be kept at reset value (0).
+ * Consult the CH32V307 reference manual (CH32FV2x_V3xRM.PDF) for detailed
+ * peripheral clock dependencies. Register access requires AHB clock stability,
+ * monitorable via RCC_CIR (e.g., PLLRDYF, CSSF).
+ *
+ * Bit fields:
+ * - Bit 0 : DMA1EN
+ *   - Description: DMA1 clock enable
+ *   - Values: 0 = Disabled, 1 = Enabled
+ * - Bit 1 : DMA2EN
+ *   - Description: DMA2 clock enable (used for Ethernet)
+ *   - Values: 0 = Disabled, 1 = Enabled
+ * - Bit 2 : SRAMEN
+ *   - Description: SRAM clock enable
+ *   - Values: 0 = Disabled, 1 = Enabled
+ * - Bit 3 : Reserved
+ *   - Description: Reserved, keep at 0
+ *   - Values: 0
+ * - Bit 4 : USBEN
+ *   - Description: USB clock enable
+ *   - Values: 0 = Disabled, 1 = Enabled
+ * - Bit 5 : Reserved
+ *   - Description: Reserved, keep at 0
+ *   - Values: 0
+ * - Bit 6 : CRCEN
+ *   - Description: CRC clock enable
+ *   - Values: 0 = Disabled, 1 = Enabled
+ * - Bits 7-31 : Reserved
+ *   - Description: Reserved, keep at 0
+ *   - Values: 0
+ */
+#define RCC_AHBENR      (*((volatile uint32_t *)(RCC_BASE + 0x14)))
+
 #define RCC_APB2EN      (*((volatile uint32_t *)(RCC_BASE + 0x18))) // APB2 enable
 /**
  * @brief RCC_APB1ENR - Reset and Clock Control APB1 Enable Register
@@ -535,4 +582,21 @@
  *     - 1: TIM2 clock enabled
  */
 #define RCC_APB1ENR     (*((volatile uint32_t *)(RCC_BASE + 0x1C)))
+
+typedef struct {
+  volatile uint32_t CTLR;
+  volatile uint32_t CFGR0;
+  volatile uint32_t INTR;
+  volatile uint32_t APB2PRSTR;
+  volatile uint32_t APB1PRSTR;
+  volatile uint32_t AHBENR;
+  volatile uint32_t APB2ENR;
+  volatile uint32_t APB1ENR;
+  volatile uint32_t BDCTLR;
+  volatile uint32_t RSTSCKR;
+  volatile uint32_t AHBRSTR;
+  volatile uint32_t CFGR2;
+} RCC_TypeDef;
+
+#define RCC                 ((RCC_TypeDef *)RCC_BASE)
 

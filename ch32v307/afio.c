@@ -5,6 +5,6 @@
 #include "rcc.h"
 
 void enable_afioen() {
-  RCC_APB2EN |= (1 << 1);
+  RCC->APB2ENR |= (1 << 1);
 }
 

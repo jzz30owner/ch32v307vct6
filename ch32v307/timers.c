@@ -10,7 +10,7 @@
 #define TIM2_CR1      (*(volatile uint32_t *)TIM2_BASE)
 
 void tim2_init() {
-  RCC_APB1ENR |= (1 << 0); // Enable TIM2 ticks
+  RCC->APB1ENR |= (1 << 0); // Enable TIM2 ticks
   TIM2_PSC = 71999;        // Devide: 72_000_000 / (71999+1) = 1_000 HZ
   TIM2_ARR = 0xFFFF;       // Reloading
   TIM2_CNT = 0;            // Reset timer

@@ -10,14 +10,18 @@
 #include "timers.h"
 #include <string.h>
 
+#define RCC_AHBPeriph_ETH_MAC            ((uint32_t)0x00004000)
+#define RCC_AHBPeriph_ETH_MAC_Tx         ((uint32_t)0x00008000)
+#define RCC_AHBPeriph_ETH_MAC_Rx         ((uint32_t)0x00010000)
+
 
 void main(void) {
-  const char * s = "ff";
-  char buff[2];
-  memcpy(buff, s, 2);
   enable_afioen();
   tim2_init();
   enable_gpioa();
+
+  RCC->AHBENR &= ~(RCC_AHBPeriph_ETH_MAC | RCC_AHBPeriph_ETH_MAC_Tx | RCC_AHBPeriph_ETH_MAC_Rx);
+
   // Disable JTAG/SWD so PA15 can be used
   AFIO_PCFR1 |= (0b100 << 24); // Full disable: SWJ_CFG = 0b100
 
