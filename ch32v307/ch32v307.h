@@ -1,7 +1,5 @@
 #pragma once
 
-#include <inttypes.h>
-
 #include "mem_mapping.h"
 #include "ch32v307_core.h"
 #include "rcc.h"
