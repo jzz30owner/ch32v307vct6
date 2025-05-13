@@ -8,9 +8,13 @@
 */
 #include "ch32v307.h"
 #include "timers.h"
+#include <string.h>
 
 
 void main(void) {
+  const char * s = "ff";
+  char buff[2];
+  memcpy(buff, s, 2);
   enable_afioen();
   tim2_init();
   enable_gpioa();
